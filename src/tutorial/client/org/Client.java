@@ -12,7 +12,7 @@ public class Client {
  
     // Host or IP of Server
     private static final String HOST = "localhost";
-    private static final int PORT = 6666;
+    private static final int PORT = Constants.porta;
     private static Registry registry;
  
     public static void main(String[] args) throws Exception {

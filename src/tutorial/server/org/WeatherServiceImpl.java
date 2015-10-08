@@ -41,6 +41,5 @@ public class WeatherServiceImpl extends UnicastRemoteObject implements
        } else {
            return new WeatherData(date, location, Constants.WEATHER_SUNNY);
        }
- 
    }
 }

@@ -6,10 +6,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
+import tutorial.org.br.Constants;
 import tutorial.org.br.WeatherService;
  
 public class Server {
-   private static final int PORT = 6666;
+   private static final int PORT = Constants.porta;
    private static Registry registry;
  
    public static void startRegistry() throws RemoteException {
