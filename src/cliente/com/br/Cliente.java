@@ -28,16 +28,35 @@ public class Cliente {
 		 * Lembrar de colocar lowcase ou uppercase para não causar conflito.
 		 */
 		
-		String palavraPT = "palavra";
+		String palavraPT = "aprender";
 		
 		Palavra palavra = servico.traducaoPtEn(palavraPT);
 		
 		System.out.println("Tradução de '" + palavraPT + "' é '" + palavra.getTraducao()+"'.");
 		
-		System.out.println("Aplicação na frase de  " + palavraPT + " é ' " + palavra.getFraseCom() + " '.");
+		System.out.println("Aplicação na frase de '" + palavraPT + "' é '" + palavra.getFraseCom() + "'.");
+		
+		
+		System.out.println("----------------");
+		
+		palavraPT = "voar";
+		
+		palavra = servico.traducaoPtEn(palavraPT);
+		
+		System.out.println("Tradução de '" + palavraPT + "' é '" + palavra.getTraducao()+"'.");
+		
+		System.out.println("Aplicação na frase de '" + palavraPT + "' é '" + palavra.getFraseCom() + "'.");
 		
 
-		//System.out.println("Digita a palvara a ser traduzida do português para o inglẽs: ");		
+		System.out.println("----------------");
+		
+		palavraPT = "veja";
+		
+		palavra = servico.traducaoPtEn(palavraPT);
+		
+		System.out.println("Tradução de '" + palavraPT + "' é '" + palavra.getTraducao()+"'.");
+		
+		System.out.println("Aplicação na frase de '" + palavraPT + "' é '" + palavra.getFraseCom() + "'.");
 		
 	}
 }
