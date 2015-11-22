@@ -9,7 +9,7 @@ import tradutor.com.br.TradutorInterface;
 
 public class TradutorServicoImp extends UnicastRemoteObject implements TradutorInterface {
 
-	private Banco bd = IniciarServidor.getBanco();
+	private Banco bd;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -19,6 +19,8 @@ public class TradutorServicoImp extends UnicastRemoteObject implements TradutorI
 
 	@Override
 	public synchronized Palavra traducaoPtEn(String palavra) throws RemoteException{
+		
+		bd = IniciarServidor.getBanco();
 		
 		System.out.println("Função tradução busca banco.");
 		
@@ -37,6 +39,24 @@ public class TradutorServicoImp extends UnicastRemoteObject implements TradutorI
 			retorno = new Palavra ("sem tradução", "inválido", "não existe");
 		}
 		
+		//bd.close();
 		return retorno;
+	}
+
+	@Override
+	public void enviarTraduçãoPtEn(Palavra palavra) throws RemoteException {
+		
+		bd = IniciarServidor.getBanco();
+		
+		try{
+			bd.addObjeto(palavra);
+			
+			System.out.println("Adição bem sucedida!");
+			
+			//bd.close();
+			
+		}catch(Exception e){
+			System.err.println("Não adicionou no banco.");
+		}
 	}
 }

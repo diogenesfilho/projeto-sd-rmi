@@ -4,9 +4,9 @@ import tradutor.com.br.Palavra;
 
 public class Conteudo {
 	
-	private static String[] portuguesP = {"veja", "escrever"};
-	private static String[] traducaoEN = {"look", "write"};
-	private static String[] aplicacaoFrase = {"Look this notebook","Everyone write once time this"};
+	private static String[] portuguesP = {"veja", "escrever","com"};
+	private static String[] traducaoEN = {"look", "write","with"};
+	private static String[] aplicacaoFrase = {"Look this notebook","Everyone write once time this", "I'm with you"};
 	
 	public static void preencheBanco (Banco banco) {
 		

@@ -57,7 +57,6 @@ public class IniciarServidor {
 		}else{
 			
 			System.err.println("Banco já existia!");
-			
 		}
 		
 		iniciarRegistro();

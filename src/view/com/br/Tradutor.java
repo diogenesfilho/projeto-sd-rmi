@@ -1,55 +1,37 @@
 package view.com.br;
 
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import tradutor.com.br.Palavra;
+import tradutor.com.br.TradutorInterface;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import cliente.com.br.Cliente;
 import constantes.com.br.Constantes;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import tradutor.com.br.Palavra;
-import tradutor.com.br.TradutorInterface;
 
-public class Tradutor extends Application{
 
-	private VBox vbox;
+public class Tradutor extends BorderPane {
 	private HBox hbox, hbox1, hbox2, hbox3;
-	private TextField ingField, portField, aplicField;
+	private VBox vbox;
+	private TextField portField, ingField, aplicField;
 	private Label ing, port, aplicEmFrase;
-	private Button traduzir,btLimpar;
+	private Button traduzir, btLimpar, enviarTrad;
 	
 	private static final String HOST = "localhost";
 	private static final int PORTA = Constantes.porta;
 	private static Registry registro;
 	
-	private static String palavraPT;
-	private static String traducao;
-	private static String frase;
-	
-	public TradutorInterface servico;
-	
-	public static boolean continua = true;
-	
-	
-	public static void main(String[] args) {
-		launch();
-
-	}
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		
+	public Tradutor(){
+		MeuMenu vboxtop = new MeuMenu();
 		
 		vbox = new VBox(30);
 		hbox = new HBox(180);
@@ -65,12 +47,14 @@ public class Tradutor extends Application{
 		ingField.setPromptText("Tradução");
 		aplicField = new TextField();
 		aplicField.setPrefSize(300, 100);
-		
+
 		traduzir = new Button("Traduzir");
 		btLimpar = new Button("Limpar");
+		enviarTrad = new Button("Enviar Tradução");
 		
 		port = new Label("Português");
 		ing = new Label("Inglês");
+		
 		aplicEmFrase = new Label("Aplicação em uma frase: ");
 		aplicEmFrase.setTranslateY(-40);
 		
@@ -78,67 +62,104 @@ public class Tradutor extends Application{
 		hbox.setAlignment(Pos.CENTER);
 		hbox1.getChildren().addAll(portField, ingField);
 		hbox1.setAlignment(Pos.CENTER);
-		hbox2.getChildren().addAll(traduzir, btLimpar);
+		hbox2.getChildren().addAll(traduzir,btLimpar,enviarTrad);
 		hbox2.setAlignment(Pos.CENTER);
 		hbox3.getChildren().addAll(aplicEmFrase, aplicField);
 		hbox3.setAlignment(Pos.CENTER);
 		
+		
 		vbox.getChildren().addAll(hbox, hbox1, hbox2, hbox3);
 		vbox.setAlignment(Pos.CENTER);
-		
-		Scene scene = new Scene(vbox, 600, 400);
-		primaryStage.setTitle("TradutorRMI");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		setCenter(vbox);
+		setTop(vboxtop);
 		
 		traduzir.setOnAction(new EventHandler<ActionEvent>() {
-			
-			private Object servico;
 
 			@Override
-			public void handle(ActionEvent arg0){
-				
+			public void handle(ActionEvent arg0) {
 				String palavraField = portField.getText();
 				
-				try{
-					registro = LocateRegistry.getRegistry(HOST, PORTA);
-					
-					TradutorInterface servico = (TradutorInterface) registro.lookup(TradutorInterface.class.getName());
-					
-					Tradutor tradutor = new Tradutor();
-					
-					Palavra palavra = servico.traducaoPtEn(palavraField);
-					
-					//System.err.println("Chegou aqui");
-					
-					System.out.println("Tradução de '" + palavraPT + "' é '" + palavra.getTraducao()+"'.");
-					
-					ingField.setText(palavra.getTraducao());
-					
-					System.out.println("Aplicação na frase de '" + palavraPT + "' é '" + palavra.getFraseCom() + "'.");
-					
-					aplicField.setText(palavra.getFraseCom());
+				System.out.println("Traduzindo");
 				
-				}catch (Exception e){
+				if (palavraField.equals("")){
+					System.out.println("Digite alguma palavra.");
+					aplicField.setText("Digite uma palavra!!");
+				}
+				
+				if(!palavraField.equals("")){
+					try{
+						registro = LocateRegistry.getRegistry(HOST, PORTA);
+						
+						TradutorInterface servico = (TradutorInterface) registro.lookup(TradutorInterface.class.getName());
+						
+						Palavra palavra = servico.traducaoPtEn(palavraField);
+						
+						System.out.println("Tradução de '" + palavraField + "' é '" + palavra.getTraducao()+"'.");
+						
+						ingField.setText(palavra.getTraducao());
+						
+						System.out.println("Aplicação na frase de '" + palavraField + "' é '" + palavra.getFraseCom() + "'.");
+						
+						aplicField.setText(palavra.getFraseCom());
 					
-					ingField.setText("Ainda não existe tradução cadastrada!");
-					aplicField.setText("Ainda não existe aplicação em frase cadastrada!");
-					
-					System.err.println("Algo deu errado!");
+					}catch (Exception e){
+						
+						ingField.setText("Ainda não existe tradução cadastrada!");
+						aplicField.setText("Ainda não existe aplicação em frase cadastrada!");
+						
+						System.err.println("Algo deu errado!");
+					}
 				}
 			}
 		});
 		
 		btLimpar.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent event) {
+				
+				System.out.println("Limpa Tela");
+				
 				ingField.setText("");
 				aplicField.setText("");
 				portField.setText("");
 				
 			}
 		});
+		
+		enviarTrad.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				
+				String palavraField = portField.getText();
+				
+				System.out.println("Enviando tradução");
+				
+				if (palavraField.equals("")){
+					System.out.println("Digite alguma palavra.");
+					aplicField.setText("Digite uma palavra!!");
+				}
+				
+				if(!palavraField.equals("")){
+					try{
+						registro = LocateRegistry.getRegistry(HOST, PORTA);
+						
+						TradutorInterface servico = (TradutorInterface) registro.lookup(TradutorInterface.class.getName());
+						
+						Palavra palavra = new Palavra(portField.getText(), ingField.getText(), aplicField.getText());
+						
+						servico.enviarTraduçãoPtEn(palavra);
+						
+						System.out.println("Sucesso!");
+						
+					}catch(Exception e){
+						
+						System.err.println("Deu merda hein!");
+						
+					}
+				}	
+			}
+		});
 	}
 }
+
 
