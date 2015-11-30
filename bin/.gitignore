@@ -1,4 +1,7 @@
-/view/
+/app/
+/banco/
+/cliente/
+/constantes/
 /servidor/
 /tradutor/
-/app/
+/view/

@@ -35,6 +35,8 @@ public class IniciarServidor {
 	
 	public static void main (String[] args) throws Exception{
 		
+		System.setProperty("java.rmi.server.hostname", "172.17.48.196");
+		
 		if(bd == null){
 			
 			bd = new Banco();	

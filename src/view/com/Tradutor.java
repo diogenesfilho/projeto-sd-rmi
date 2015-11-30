@@ -29,7 +29,7 @@ public class Tradutor extends Application{
 	private Label ing, port, aplicEmFrase;
 	private Button traduzir,btLimpar;
 	
-	private static final String HOST = "localhost";
+	private static final String HOST = "172.17.48.196";
 	private static final int PORTA = Constantes.porta;
 	private static Registry registro;
 	
@@ -43,13 +43,15 @@ public class Tradutor extends Application{
 	
 	
 	public static void main(String[] args) {
+		
+		System.setProperty("java.rmi.server.hostname", "172.17.43.142");
+		
 		launch();
 
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
 		
 		vbox = new VBox(30);
 		hbox = new HBox(180);
@@ -105,7 +107,7 @@ public class Tradutor extends Application{
 					
 					TradutorInterface servico = (TradutorInterface) registro.lookup(TradutorInterface.class.getName());
 					
-					Tradutor tradutor = new Tradutor();
+					//Tradutor tradutor = new Tradutor();
 					
 					Palavra palavra = servico.traducaoPtEn(palavraField);
 					
@@ -121,10 +123,13 @@ public class Tradutor extends Application{
 				
 				}catch (Exception e){
 					
-					ingField.setText("Ainda não existe tradução cadastrada!");
+					e.printStackTrace();
+					
+					ingField.setText("Erro aqui");
 					aplicField.setText("Ainda não existe aplicação em frase cadastrada!");
 					
-					System.err.println("Algo deu errado!");
+					
+				
 				}
 			}
 		});

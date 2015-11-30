@@ -26,7 +26,7 @@ public class Tradutor extends BorderPane {
 	private Label ing, port, aplicEmFrase;
 	private Button traduzir, btLimpar, enviarTrad;
 	
-	private static final String HOST = "localhost";
+	private static final String HOST = "172.17.48.196";
 	private static final int PORTA = Constantes.porta;
 	private static Registry registro;
 	
@@ -38,7 +38,7 @@ public class Tradutor extends BorderPane {
 		//hbox.setPrefSize(100, 30);
 		hbox1 = new HBox(30);
 		
-		hbox2 = new HBox(250);
+		hbox2 = new HBox(30);
 		hbox3 = new HBox(30);
 		
 		portField = new TextField();
@@ -153,7 +153,9 @@ public class Tradutor extends BorderPane {
 						
 					}catch(Exception e){
 						
-						System.err.println("Deu merda hein!");
+						e.printStackTrace();
+						
+						//System.err.println("Deu merda hein!");
 						
 					}
 				}	

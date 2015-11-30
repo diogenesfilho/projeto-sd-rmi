@@ -16,6 +16,8 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
+		System.setProperty("java.rmi.server.hostname", "172.17.51.228");
+		
 		TelaPrincipal tela = new TelaPrincipal();
 		scene = new Scene(tela, 600, 600);
 		
