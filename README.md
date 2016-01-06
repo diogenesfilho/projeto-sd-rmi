@@ -1,6 +1,8 @@
 # Projeto de Sistemas Distribuídos usando Chamada de Procedimento Remoto (RMI (Remote Method Invocation) )
 
-Alunos: Diogenes Laertius e João Vitor.
+Autores: <br>
+          * Diogenes Laertius (diogeneslaertiussof@gmail.com )<br>
+          * João Vitor (joao130693@gmail.com).
 
 Tradutor fazendo uso de RMI. <br>
 
