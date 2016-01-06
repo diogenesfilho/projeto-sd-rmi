@@ -2,18 +2,18 @@
 
 Alunos: Diogenes Laertius e João Vitor.
 
-Tradutor fazendo uso de RMI.
+Tradutor fazendo uso de RMI. <br>
 
-<b>Linguagem de Programação usada</br>:: Java
+<b>Linguagem de Programação usada</b>: Java. <br>
 
-<b>Interface Gráfica </br>: JavaFX.
+<b>Interface Gráfica </b>: JavaFX. <br>
 
-<b>Banco de Dados</br>: DB4Object.
+<b>Banco de Dados</b>: DB4Object. <br>
 
-<b>Objetivo</br>: Enviar e receber traduções usando de um cliente e um servidor.
+<b>Objetivo</b>: Enviar e receber traduções usando de um cliente e um servidor.<br>
 
-<b>Primeiro passo</br>: IniciarServidor.java (Iniciando o Servidor).
+<b>Primeiro passo</b>: IniciarServidor.java (Iniciando o Servidor).<br>
 
-<b>Segundo passo</br>: Iniciar o Main.java (Interface do cliente, o qual irá requisitar as traduções e enviar as mesmas para o servidor).
+<b>Segundo passo</b>: Iniciar o Main.java (Interface do cliente, o qual irá requisitar as traduções e enviar as mesmas para o servidor).<br>
 
-<b>Como funciona</b>: O cliente irá requisitar do servidor a tradução de uma palavra do português para o inglês. Recebendo tanto a palavra em inglês, caso exista, como sua aplicação em frase. É possível ainda o cliente enviar novas traduções para o servidor.
+<b>Como funciona</b>: O cliente irá requisitar do servidor a tradução de uma palavra do português para o inglês. Recebendo tanto a palavra em inglês, caso exista, como sua aplicação em frase. É possível ainda o cliente enviar novas traduções para o servidor.<br>
