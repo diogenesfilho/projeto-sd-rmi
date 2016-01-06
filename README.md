@@ -4,7 +4,7 @@ Autores: <br>
           * Diogenes Laertius (diogeneslaertiussof@gmail.com )<br>
           * João Vitor (joao130693@gmail.com).
 
-Tradutor fazendo uso de RMI. <br>
+Tradutor de palavras do Português Brasil para o Inglês Americano com RMI em Java. <br>
 
 <b>Linguagem de Programação usada</b>: Java. <br>
 
